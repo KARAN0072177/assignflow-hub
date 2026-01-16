@@ -60,14 +60,16 @@ export default function TeacherSubjectDetailPage() {
     fetchAssignments();
   }, [subjectId]);
 
-  // --- Now conditional UI ---
+  // --- Conditional UI ---
   if (loading) return <div className="p-6">Loading subject...</div>;
   if (error) return <div className="p-6 text-red-600">{error}</div>;
   if (!subject) return null;
 
-  // --- rest of component ---
+  // Publish assignment
   const publishAssignment = async (id: string) => {
-    await fetch(`/api/assignments/${id}/publish`, { method: "PATCH" });
+    await fetch(`/api/assignments/${id}/publish`, {
+      method: "PATCH",
+    });
 
     setAssignments((prev) =>
       prev.map((a) =>
@@ -102,7 +104,9 @@ export default function TeacherSubjectDetailPage() {
         </h2>
 
         {assignments.length === 0 ? (
-          <p className="text-gray-500">No assignments created yet.</p>
+          <p className="text-gray-500">
+            No assignments created yet.
+          </p>
         ) : (
           <div className="space-y-4">
             {assignments.map((a) => (
@@ -113,7 +117,8 @@ export default function TeacherSubjectDetailPage() {
                 <div>
                   <h3 className="font-medium">{a.title}</h3>
                   <p className="text-sm text-gray-600">
-                    Deadline: {new Date(a.deadline).toLocaleDateString()}
+                    Deadline:{" "}
+                    {new Date(a.deadline).toLocaleDateString()}
                   </p>
                 </div>
 
@@ -136,6 +141,14 @@ export default function TeacherSubjectDetailPage() {
                       Publish
                     </button>
                   )}
+
+                  {/* ✅ View submissions */}
+                  <Link
+                    href={`/teacher/assignments/${a._id}/submissions`}
+                    className="text-sm text-blue-600 underline"
+                  >
+                    View Submissions
+                  </Link>
                 </div>
               </div>
             ))}
