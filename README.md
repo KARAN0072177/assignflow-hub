@@ -6,7 +6,7 @@ AssignFlow Hub is a full-stack web application designed to simplify classroom as
 The platform is inspired by tools like Google Classroom, but intentionally focuses on:
 - zero confusion
 - predictable workflows
-- real-time feedback readiness
+- real-time feedback readiness (future scope)
 - beginner-friendly UX for both teachers and students
 
 This project is built **solo** and emphasizes **backend architecture, authorization, and real-world system design**.
